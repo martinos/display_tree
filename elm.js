@@ -4254,7 +4254,7 @@ Elm.Main.make = function (_elm) {
    });
    var initModel = {_: {}
                    ,input: ""
-                   ,nodes: _L.fromArray([5])};
+                   ,nodes: _L.fromArray([2])};
    var main = $Signal.map(view(app.address))(A3($Signal.foldp,
    update,
    initModel,
@@ -12941,30 +12941,22 @@ Elm.TreeDisplay.make = function (_elm) {
                                           ,_0: _v0._0
                                           ,_1: _v0._1})($Graphics$Collage.text($Text.color($Color.white)($Text.fromString($Basics.toString(v)))));}
          _U.badCase($moduleName,
-         "between lines 34 and 38");
+         "between lines 24 and 28");
       }();
    });
-   var nodeForms = F3(function (v,
-   parentCoor,
+   var nodeForms = F2(function (v,
    _v4) {
       return function () {
          switch (_v4.ctor)
          {case "_Tuple2":
-            return $Graphics$Collage.group(_L.fromArray([$Graphics$Collage.move({ctor: "_Tuple2"
-                                                                                ,_0: _v4._0
-                                                                                ,_1: _v4._1})($Graphics$Collage.filled($Color.red)($Graphics$Collage.circle(15.0)))
-                                                        ,$Graphics$Collage.traced($Graphics$Collage.defaultLine)(A2($Graphics$Collage.segment,
-                                                        parentCoor,
-                                                        {ctor: "_Tuple2"
-                                                        ,_0: _v4._0
-                                                        ,_1: _v4._1}))]));}
+            return $Graphics$Collage.move({ctor: "_Tuple2"
+                                          ,_0: _v4._0
+                                          ,_1: _v4._1})($Graphics$Collage.filled($Color.red)($Graphics$Collage.circle(15.0)));}
          _U.badCase($moduleName,
-         "between lines 29 and 30");
+         "on line 21, column 3 to 47");
       }();
    });
-   var displayTree = F4(function (parentCoor,
-   _v8,
-   depth,
+   var displayTree = F2(function (_v8,
    tree) {
       return function () {
          switch (_v8.ctor)
@@ -12974,59 +12966,41 @@ Elm.TreeDisplay.make = function (_elm) {
                  {case "Empty":
                     return _L.fromArray([]);
                     case "Node":
-                    return function () {
-                         var origWidth = 50.0;
-                         var newWidth = origWidth * (5.0 - $Basics.toFloat(depth)) / 5.0;
-                         var height = 25.0;
-                         var leftnodeCoor = {ctor: "_Tuple2"
-                                            ,_0: _v8._0 - newWidth
-                                            ,_1: _v8._1 - height};
-                         var rightnodeCoor = {ctor: "_Tuple2"
-                                             ,_0: _v8._0 + newWidth
-                                             ,_1: _v8._1 - height};
-                         return A2($Basics._op["++"],
-                         A4(displayTree,
-                         {ctor: "_Tuple2"
-                         ,_0: _v8._0
-                         ,_1: _v8._1},
-                         leftnodeCoor,
-                         depth + 1,
-                         tree._1),
-                         A2($Basics._op["++"],
-                         _L.fromArray([A3(nodeForms,
-                                      tree._0,
-                                      parentCoor,
-                                      {ctor: "_Tuple2"
-                                      ,_0: _v8._0
-                                      ,_1: _v8._1})
-                                      ,A2(nodeText,
-                                      tree._0,
-                                      {ctor: "_Tuple2"
-                                      ,_0: _v8._0
-                                      ,_1: _v8._1})]),
-                         A4(displayTree,
-                         {ctor: "_Tuple2"
-                         ,_0: _v8._0
-                         ,_1: _v8._1},
-                         rightnodeCoor,
-                         depth + 1,
-                         tree._2)));
-                      }();}
+                    return A2($Basics._op["++"],
+                      A2(displayTree,
+                      {ctor: "_Tuple2"
+                      ,_0: _v8._0 - 20.0
+                      ,_1: _v8._1 - 50.0},
+                      tree._1),
+                      A2($Basics._op["++"],
+                      _L.fromArray([A2(nodeForms,
+                                   tree._0,
+                                   {ctor: "_Tuple2"
+                                   ,_0: _v8._0
+                                   ,_1: _v8._1})
+                                   ,A2(nodeText,
+                                   tree._0,
+                                   {ctor: "_Tuple2"
+                                   ,_0: _v8._0
+                                   ,_1: _v8._1})]),
+                      A2(displayTree,
+                      {ctor: "_Tuple2"
+                      ,_0: _v8._0 + 20.0
+                      ,_1: _v8._1 - 50.0},
+                      tree._2)));}
                  _U.badCase($moduleName,
-                 "between lines 12 and 27");
+                 "between lines 11 and 19");
               }();}
          _U.badCase($moduleName,
-         "between lines 12 and 27");
+         "between lines 11 and 19");
       }();
    });
    var treeElement = function (treeList) {
       return A3($Graphics$Collage.collage,
       300,
       300,
-      A4(displayTree,
+      A2(displayTree,
       {ctor: "_Tuple2",_0: 0,_1: 100},
-      {ctor: "_Tuple2",_0: 0,_1: 100},
-      0,
       $Tree.fromList(treeList)));
    };
    _elm.TreeDisplay.values = {_op: _op

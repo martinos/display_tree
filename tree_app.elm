@@ -12,7 +12,7 @@ type alias Model =
   , nodes: List Int}
 
 initModel: Model
-initModel = {input = "", nodes = [5]}
+initModel = {input = "", nodes = [2]}
 
 -- Controller --
 
